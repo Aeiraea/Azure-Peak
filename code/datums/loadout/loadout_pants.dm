@@ -57,9 +57,14 @@
 /datum/loadout_item/formaltrousers
 	name = "Formal Trousers"
 	path = /obj/item/clothing/under/roguetown/tights/formalfancy
-	sort_category = "Pants"	
+	sort_category = "Pants"
 
-/datum/loadout_item/dhoti
-	name = "Dhoti"
-	path = /obj/item/clothing/under/roguetown/tights/dhoti
+/datum/loadout_item/formalskirt
+	name = "Knee-High Skirt"
+	path = /obj/item/clothing/under/roguetown/skirt/formal
+	sort_category = "Pants"
+
+/datum/loadout_item/formalskirt_color
+	name = "Knee-High Skirt (Dyeable)"
+	path = /obj/item/clothing/under/roguetown/skirt/formal_color
 	sort_category = "Pants"

@@ -43,6 +43,14 @@
 	tools = list(/obj/item/needle)
 	craftdiff = 2
 
+/datum/crafting_recipe/roguetown/leather/corset_color
+	name = "corset (dyeable)"
+	result = /obj/item/clothing/suit/roguetown/armor/corset_color
+	reqs = list(/obj/item/natural/hide/cured = 1,
+				/obj/item/natural/fibers = 1)
+	tools = list(/obj/item/needle)
+	craftdiff = 2
+
 /datum/crafting_recipe/roguetown/leather/gloves
 	name = "leather gloves"
 	display_category = ITEM_CAT_ARMOR_GLOVES

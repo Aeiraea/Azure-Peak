@@ -218,6 +218,15 @@
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/cloth
 
+/obj/item/clothing/shoes/roguetown/sandals/toga
+	name = "toga sandals"
+	desc = "A fancy pair of sandals delicately woven in a style that harken back to bygone yils of antiquity."
+	gender = PLURAL
+	icon_state = "togasandals"
+	item_state = "togasandals"
+	salvage_amount = 1
+	salvage_result = /obj/item/natural/cloth
+
 /obj/item/clothing/shoes/roguetown/sandals/aalloy
 	name = "decrepit sandals"
 	desc = "Frayed bronze platforms, curled about to cradle the feet. The beaches that these sandals once treaded are no more; pearly sands, long since turnt to glass from the Comet Syon's impact."

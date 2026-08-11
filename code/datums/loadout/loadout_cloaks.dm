@@ -208,3 +208,13 @@
 	name = "Ranger Cloak, Neutral Gray"
 	path = /obj/item/clothing/cloak/rangercloak/gray
 	sort_category = "Cloaks"
+
+/datum/loadout_item/classictoga
+	name = "Classic Toga"
+	path = /obj/item/clothing/cloak/tabard/toga/classic
+	sort_category = "Cloaks"
+
+/datum/loadout_item/classictogafeminine
+	name = "Classic Toga, Feminine"
+	path = /obj/item/clothing/cloak/tabard/toga/classic/feminine
+	sort_category = "Cloaks"

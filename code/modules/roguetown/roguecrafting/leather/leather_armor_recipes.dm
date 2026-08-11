@@ -109,6 +109,16 @@
 		)
 	craftdiff = 3
 
+/datum/crafting_recipe/roguetown/leather/armor/druid
+	name = "druid armor"
+	result = /obj/item/clothing/suit/roguetown/armor/leather/druid
+	reqs = list(
+		/obj/item/natural/hide/cured = 3,
+		/obj/item/natural/fibers = 2,
+		/obj/item/grown/log/tree/small = 2
+		)
+	craftdiff = 3
+
 /datum/crafting_recipe/roguetown/leather/armor/freivest
 	name = "fencing jacket"	//Expensive on purpose.
 	result = /obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter

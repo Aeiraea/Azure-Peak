@@ -64,3 +64,8 @@
 	name = "Raised Sandals"
 	path = /obj/item/clothing/shoes/roguetown/armor/rumaclan/shitty
 	sort_category = "Shoes"
+
+/datum/loadout_item/togasandals
+	name = "Toga Sandals"
+	path = /obj/item/clothing/shoes/roguetown/sandals/toga
+	sort_category = "Shoes"

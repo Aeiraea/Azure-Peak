@@ -11,6 +11,18 @@
 	grid_height = 64
 	grid_width = 64
 
+/obj/item/clothing/suit/roguetown/armor/corset_color
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	name = "corset"
+	desc = "A leather binding to constrict one's figure... and lungs."
+	icon_state = "corset_color"
+	body_parts_covered = CHEST
+	salvage_result = /obj/item/natural/hide/cured
+	sewrepair = TRUE
+	salvage_amount = 1
+	grid_height = 64
+	grid_width = 64
+
 /obj/item/clothing/suit/roguetown/armor/longcoat
 	name = "longcoat"
 	desc = "A padded longcoat meant to keep you warm in the frigid winters"
