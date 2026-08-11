@@ -68,13 +68,3 @@
 	name = "Knee-High Skirt (Dyeable)"
 	path = /obj/item/clothing/under/roguetown/skirt/formal_color
 	sort_category = "Pants"
-
-/datum/loadout_item/formalskirt
-	name = "Knee-High Skirt"
-	path = /obj/item/clothing/under/roguetown/skirt/formal
-	sort_category = "Pants"
-
-/datum/loadout_item/formalskirt_color
-	name = "Knee-High Skirt (Dyeable)"
-	path = /obj/item/clothing/under/roguetown/skirt/formal_color
-	sort_category = "Pants"
