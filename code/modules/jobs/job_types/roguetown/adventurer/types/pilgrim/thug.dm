@@ -191,15 +191,14 @@
 	backr = /obj/item/storage/backpack/rogue/satchel
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-	armor = /obj/item/clothing/suit/roguetown/armor/manual/resting/thug //light gambeson.
-	shirt = /obj/item/clothing/suit/roguetown/armor/manual/resting/thug/chest //leather armor with gambeson integ.
+	armor = /obj/item/clothing/suit/roguetown/armor/manual/resting/leather/thug
 	backpack_contents = list(
 				/obj/item/rogueweapon/huntingknife = 1,
 				/obj/item/recipe_book/leatherworking = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
 	if(should_wear_femme_clothes(H))
-		l_hand = /obj/item/clothing/suit/roguetown/shirt/desertbra //Let's not set our ladies naked roundstart.  ...unless we have to. Should be able to toss into skin-armor cosmetic overlay easy enough inround.
+		shirt = /obj/item/clothing/suit/roguetown/shirt/desertbra //Let's not set our ladies naked roundstart
 
 	var/options = list("Hands-On", "Big Axe")
 	var/option_choice = input(H, "Choose your means.", "TAKE UP ARMS") as anything in options

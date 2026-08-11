@@ -4,7 +4,7 @@
 	icon = 'icons/obj/structures/heart_items.dmi'
 	icon_state = "canister_empty"
 	w_class = WEIGHT_CLASS_TINY
-
+	
 	var/obj/structure/stone_rack/parent_rack
 	var/filled = FALSE
 	var/current_color = "#ffffff"
@@ -54,13 +54,14 @@
 
 /obj/item/heart_canister/proc/show_aspect_menu(mob/user)
 	var/list/categories = list(
-		"Archetypes",
-		"Traits",
-		"Quirks"
+		"Archetypes" = "Choose from available archetypes",
+		"Traits" = "Choose from available traits", 
+		"Quirks" = "Choose from available quirks",
+		"Cancel" = "Do not attune"
 	)
 
-	var/category_choice = tgui_input_list(user, "Select aspect category to attune:", "Canister Attunement", categories)
-	if(!category_choice)
+	var/category_choice = input(user, "Select aspect category to attune:", "Canister Attunement") as null|anything in categories
+	if(!category_choice || category_choice == "Cancel")
 		return
 
 	show_aspects_in_category(category_choice, user)
@@ -93,12 +94,12 @@
 		var/datum/A = aspects[datum_type]
 
 		var/datum/flesh_archetype/archetype
-		var/datum/flesh_trait/trait
+		var/datum/flesh_trait/trait  
 		var/datum/flesh_quirk/quirk
-
+		
 		var/aspect_name
 		var/required_item_type
-
+		
 		if(istype(A, /datum/flesh_archetype))
 			archetype = A
 			aspect_name = archetype.name
@@ -124,13 +125,14 @@
 
 	// Sort alphabetically
 	selection_options = sortList(selection_options)
+	selection_options["Cancel"] = "CANCEL"
 
-	var/choice = tgui_input_list(user, "Select a [singular_name] to attune", "[category_name] Selection", selection_options)
-	if(!choice)
+	var/choice = input(user, "Select a [singular_name] to attune", "[category_name] Selection") as null|anything in selection_options
+	if(!choice || choice == "Cancel")
 		return
 
 	var/datum/selected_aspect = selection_options[choice]
-	if(selected_aspect)
+	if(selected_aspect && selected_aspect != "CANCEL")
 		attune_to_aspect(user, selected_aspect)
 
 /obj/item/heart_canister/update_icon()
@@ -361,7 +363,7 @@
 				if(concept_datum)
 					UNTYPED_LIST_ADD(concept_names, concept_datum.name)
 				else
-					UNTYPED_LIST_ADD(concept_names, "[concept_path]")
+					UNTYPED_LIST_ADD(concept_names, "[concept_path]") 
 			aspect_data["liked_concepts"] = concept_names
 
 			var/list/approach_summaries = list()

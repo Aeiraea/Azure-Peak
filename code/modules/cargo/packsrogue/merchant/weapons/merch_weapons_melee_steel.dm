@@ -229,8 +229,3 @@
 	name = "Falx"
 	cost = 40 // 1 Steel Ingot
 	contains = list(/obj/item/rogueweapon/sword/falx)
-
-/datum/supply_pack/rogue/steel_weapons/axe
-	name = "Steel Axe"
-	cost = 40 // 1 Steel Ingot
-	contains = list(/obj/item/rogueweapon/stoneaxe/woodcut/steel)
