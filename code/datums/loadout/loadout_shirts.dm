@@ -240,6 +240,11 @@
 	path = /obj/item/clothing/suit/roguetown/shirt/dress/courtesan
 	sort_category = "Shirts"
 
+/datum/loadout_item/nightgown
+	name = "Nightgown"
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/nightgown
+	sort_category = "Shirts"
+
 /datum/loadout_item/wintercoat
 	name = "Winter Coat"
 	path = /obj/item/clothing/suit/roguetown/shirt/tunic/winter

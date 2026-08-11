@@ -971,7 +971,7 @@
 
 /obj/item/clothing/suit/roguetown/shirt/dress/nightgown
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
-	name = "night gown"
+	name = "nightgown"
 	desc = "An elegant and enticing nightgown, made for comfort and allure."
 	icon_state = "nightgown"
 	item_state = "nightgown"

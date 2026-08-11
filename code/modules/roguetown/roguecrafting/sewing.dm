@@ -1089,7 +1089,7 @@
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/nightgown
-	name = "night gown"
+	name = "nightgown"
 	category = "Dresses"
 	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/nightgown)
 	reqs = list(/obj/item/natural/cloth = 3,
