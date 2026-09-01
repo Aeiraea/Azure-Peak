@@ -246,8 +246,13 @@
 /datum/job/proc/get_used_title(mob/player)
 	var/titles = player.titles_pref
 	var/used_name = display_title || title
-	if((titles == TITLES_F) && f_title)
-		used_name = f_title
+	if(titles == TITLES_F)
+		var/mob/living/carbon/human/H = player
+		var/datum/advclass/AC = H.get_advclass_datum()
+		if(AC?.f_title)
+			return AC.f_title
+		if(f_title)
+			return f_title
 	return used_name
 
 /client/proc/job_greet(datum/job/greeting_job)
@@ -317,9 +322,7 @@
 		H.hydration = 1000
 
 	if(H.islatejoin && announce_latejoin)
-		var/used_title = display_title || title
-		if((H.titles_pref == TITLES_F) && f_title)
-			used_title = f_title
+		var/used_title = get_used_title(H)
 		scom_announce("[H.real_name] the [used_title] arrives to Azure Peak.")
 
 	if(give_bank_account)
@@ -551,8 +554,12 @@
 
 /datum/job/proc/get_informed_title(mob/mob)
 	if(mob.gender == FEMALE && f_title)
-		return f_title
-
+		var/mob/living/carbon/human/H = mob
+		var/datum/advclass/AC = H.get_advclass_datum()
+		if(AC?.f_title)
+			return AC.f_title
+		if(f_title)
+			return f_title
 	return display_title || title
 
 /datum/job/proc/show_explain(mob/user)

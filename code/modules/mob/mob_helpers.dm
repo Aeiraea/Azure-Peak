@@ -1154,11 +1154,19 @@
 		var/datum/job/J = SSjob.GetJob(job)
 		if(!J)
 			return "unknown"
-		used_title =	J.display_title || J.title
-		if(J.f_title && (titles_pref == TITLES_F))
-			used_title = J.f_title
+		used_title = J.display_title || J.title
 		if(J.advjob_examine && !override_advclass_examine)
 			used_title = advjob
+		if(titles_pref == TITLES_F)
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				var/datum/advclass/AC = H.get_advclass_datum()
+				if(AC?.f_title)
+					used_title = AC.f_title
+				else if(J.f_title)
+					used_title = J.f_title
+			else if(J.f_title)
+				used_title = J.f_title
 	return used_title
 
 ///Is the passed in mob a ghost with admin powers, doesn't check for AI interact like isAdminGhost() used to

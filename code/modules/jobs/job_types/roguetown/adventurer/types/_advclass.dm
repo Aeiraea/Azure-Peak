@@ -1,5 +1,6 @@
 /datum/advclass
 	var/name
+	var/f_title
 	var/list/classes
 	var/outfit
 	var/tutorial = "Choose me!"
@@ -72,6 +73,11 @@
 	var/class_tempo_faction = null
 
 	var/tempo_capable = TRUE
+
+/datum/advclass/proc/get_used_title(titles_pref)
+	if(titles_pref == TITLES_F && f_title)
+		return f_title
+	return name
 
 /datum/advclass/New()
 	if(ispath(age_mod) && !istype(age_mod))
@@ -315,6 +321,20 @@
 	#endif
 
 	return null
+
+/datum/advclass/proc/constant_ui_data()
+	return list(
+		"titles" = list(
+			TITLES_M = name,
+			TITLES_F = f_title || name,
+		),
+		"department_flag" = 0,
+		"display_order" = 0,
+		"class_setup_examine" = FALSE,
+		"tutorial" = tutorial,
+		"round_contrib_points" = 0,
+		"has_subprefs" = FALSE,
+	)
 
 // Basically the handler has a chance to plus up a class, heres a generic proc you can override to handle behavior related to it.
 // For now you just get an extra stat in everything depending on how many plusses you managed to get.
