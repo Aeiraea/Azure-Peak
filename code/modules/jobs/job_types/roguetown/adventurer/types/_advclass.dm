@@ -5,7 +5,7 @@
 	var/list/classes
 	var/outfit
 	var/tutorial = "Choose me!"
-	// Feminine-specific tutorial shown in the class-picker. If not set, will default to the tutorial var.
+	// Feminine-specific tutorial shown in the class-picker. If not set, will default to the tutorial var. It CANNOT have (= "Choose me!") after it or every advclass with f_title will have it.
 	var/f_tutorial
 	var/townie_contract_gate_exempt = FALSE
 	var/townie_contract_gate_hide_in_list = FALSE
