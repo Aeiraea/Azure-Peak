@@ -554,6 +554,9 @@
 
 /datum/job/proc/get_informed_title(mob/mob)
 	if(mob.gender == FEMALE && f_title)
+		// Below is a hack to get the advclass title for females.
+		// Since the advclass f_title is stored in the advclass datum and not the job datum.
+		// Defaults to the job title if the advclass doesn't have either.
 		var/mob/living/carbon/human/H = mob
 		var/datum/advclass/AC = H.get_advclass_datum()
 		if(AC?.f_title)
@@ -562,7 +565,9 @@
 			return f_title
 	return display_title || title
 
-/datum/job/proc/show_explain(mob/user)
+/datum/job/proc/show_explain(mob/user, titles_pref = null)
+	if(isnull(titles_pref))
+		titles_pref = user.titles_pref
 	if(!class_setup_examine)
 		to_chat(user, span_danger("[title] does not allow examining it!"))
 		return
@@ -577,10 +582,10 @@
 			sclass_count++
 			var/datum/advclass/adv = sclass
 			var/datum/advclass/adv_ref = SSrole_class_handler.get_advclass_by_name(initial(adv.name))
-			dat += "<details><summary><b><font color ='#ece9e9'>[adv_ref.name]</font></b></summary>"
+			dat += "<details><summary><b><font color ='#ece9e9'>[adv_ref.get_used_title(titles_pref)]</font></b></summary>"
 			dat += "<table align='center'; width='100%'; height='100%';border: 1px solid white;border-collapse: collapse>"
 			dat += "<tr style='vertical-align:top'>"
-			dat += "<td width = 70%><i><font color ='#ece9e9'>[adv_ref.tutorial]</font></i></td>"
+			dat += "<td width = 70%><i><font color ='#ece9e9'>[adv_ref.get_used_tutorial(titles_pref)]</font></i></td>"
 			dat += "<td width = 30%; style='text-align:right'>"
 			if(length(adv_ref.subclass_stats))
 				dat += "<font color ='#7a4d0a'>Stat Bonuses:</font><font color ='#d4b164'>"

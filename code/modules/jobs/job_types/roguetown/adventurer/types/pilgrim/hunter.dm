@@ -2,6 +2,7 @@
 	name = "Bow-Hunter"
 	f_title = "Bow-Huntress"
 	tutorial = "You are a hunter. With your bow you hunt the fauna of the glade, skinning what you kill and cooking any meat left over. The job is dangerous but important in the circulation of clothing and light armor."
+	f_tutorial = "You are a huntress. With your bow you hunt the fauna of the glade, skinning what you kill and cooking any meat left over. The job is dangerous but important in the circulation of clothing and light armor."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_DESPISED)
 
@@ -81,7 +82,8 @@
 /datum/advclass/hunter/spear
 	name = "Spear-Hunter"
 	f_title = "Spear-Huntress"
-	tutorial = "You are a hunter. With your bow you hunt the fauna of the glade, skinning what you kill and cooking any meat left over. The job is dangerous but important in the circulation of clothing and light armor."
+	tutorial = "You are a hunter. With your spear you hunt the fauna of the glade, skinning what you kill and cooking any meat left over. The job is dangerous but important in the circulation of clothing and light armor."
+	f_tutorial = "You are a huntress. With your spear you hunt the fauna of the glade, skinning what you kill and cooking any meat left over. The job is dangerous but important in the circulation of clothing and light armor."
 	outfit = /datum/outfit/job/roguetown/adventurer/hunter_spear
 	traits_applied = list(TRAIT_OUTDOORSMAN, TRAIT_SURVIVAL_EXPERT, TRAIT_MASTERFUL_HUNTER)
 	townie_contract_gate_exempt = TRUE

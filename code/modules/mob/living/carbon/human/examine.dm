@@ -850,7 +850,8 @@
 
 		if(HAS_TRAIT(src, TRAIT_WITCH))
 			if(HAS_TRAIT(user, TRAIT_NOBLE) || HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_WITCH))
-				. += span_warning("A witch! Their presence brings an unsettling aura.")
+				var/witch_title = (src.titles_pref == TITLES_F) ? "witch" : "warlock"
+				. += span_warning("A [witch_title]! Their presence brings an unsettling aura.")
 			else if(HAS_TRAIT(user, TRAIT_FREEMAN) || HAS_TRAIT(user, TRAIT_CABAL) || HAS_TRAIT(user, TRAIT_HORDE) || HAS_TRAIT(user, TRAIT_DEPRAVED))
 				. += span_notice("A practitioner of the old ways.")
 			else

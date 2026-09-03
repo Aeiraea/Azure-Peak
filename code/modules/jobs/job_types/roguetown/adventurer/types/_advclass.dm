@@ -1,9 +1,12 @@
 /datum/advclass
 	var/name
+	// Display only title for feminine character.
 	var/f_title
 	var/list/classes
 	var/outfit
 	var/tutorial = "Choose me!"
+	// Feminine-specific tutorial shown in the class-picker. If not set, will default to the tutorial var.
+	var/f_tutorial
 	var/townie_contract_gate_exempt = FALSE
 	var/townie_contract_gate_hide_in_list = FALSE
 	/// Subclass-specific tutorial shown via to_chat on spawn, separate from the class-picker tutorial.
@@ -74,10 +77,17 @@
 
 	var/tempo_capable = TRUE
 
+//Fetches the feminine title for the class-picker if it exists, otherwise returns the default title.
 /datum/advclass/proc/get_used_title(titles_pref)
 	if(titles_pref == TITLES_F && f_title)
 		return f_title
 	return name
+
+//Fetches the feminine tutorial for the class-picker if it exists, otherwise returns the default tutorial.
+/datum/advclass/proc/get_used_tutorial(titles_pref)
+	if(titles_pref == TITLES_F && f_tutorial)
+		return f_tutorial
+	return tutorial
 
 /datum/advclass/New()
 	if(ispath(age_mod) && !istype(age_mod))
@@ -322,6 +332,8 @@
 
 	return null
 
+// Fetches constant UI data for the class-picker.
+// It basically mimics the _job.dm's constant_ui_data proc, but for advclasses. This is used in the class-picker to show the feminine title, if it exists.
 /datum/advclass/proc/constant_ui_data()
 	return list(
 		"titles" = list(
