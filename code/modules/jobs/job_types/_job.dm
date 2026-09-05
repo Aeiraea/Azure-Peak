@@ -382,7 +382,7 @@
 			mob_rank = "Adventurer"
 		else
 			mob_rank = H.mind.assigned_role
-		GLOB.actors_list[H.mobid] = list("name" = mob_name, "rank" = mob_rank)
+		GLOB.actors_list[H.mobid] = list("name" = mob_name, "rank" = mob_rank, "mob" = H)
 
 	if(islist(advclass_cat_rolls))
 		hugboxify_for_class_selection(H)
