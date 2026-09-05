@@ -1155,18 +1155,20 @@
 		if(!J)
 			return "unknown"
 		used_title = J.display_title || J.title
+		// If this job uses advclass titles on examine, it'll use the character's advclass title.
+		// Otherwise, it'll use the job's feminine title when the character's title preference is feminine.
 		if(J.advjob_examine && !override_advclass_examine)
-			used_title = advjob
-		if(titles_pref == TITLES_F) // This and below checks if the mob is female and if their advclass has f_title, if so it uses that instead of their preferred title.
 			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
 				var/datum/advclass/AC = H.get_advclass_datum()
 				if(AC)
 					used_title = AC.get_used_title_with_pref(H)
-				else if(J.f_title)
-					used_title = J.f_title
-			else if(J.f_title)
-				used_title = J.f_title
+				else if(advjob)
+					used_title = advjob
+			else if(advjob)
+				used_title = advjob
+		else if(titles_pref == TITLES_F && J.f_title)
+			used_title = J.f_title
 	return used_title
 
 ///Is the passed in mob a ghost with admin powers, doesn't check for AI interact like isAdminGhost() used to
