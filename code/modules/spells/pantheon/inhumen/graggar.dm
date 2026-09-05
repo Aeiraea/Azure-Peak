@@ -316,7 +316,6 @@
 		if(istype(target.patron, /datum/patron/inhumen))
 			to_chat(target, span_danger("You feel your blood boil! It's time to wage war!"))
 			target.apply_status_effect(/datum/status_effect/buff/call_to_slaughter)	//Buffs inhumens
-			target.add_stress(/datum/stressevent/jolly_warfare)
 			continue
 		if(istype(target.patron, /datum/patron/old_god))
 			to_chat(target, span_danger("You feel a surge of cold wash over you, yet it leaves your body as quick as it hits.")) //No effect on Psydonites!
@@ -330,7 +329,6 @@
 			continue
 		to_chat(target, span_danger("You feel your blood chill! I must survive..."))
 		target.apply_status_effect(/datum/status_effect/debuff/call_to_slaughter)	//Debuffs non-inhumens/psydonians
-		target.add_stress(/datum/stressevent/dreadful_warfare)
 	return TRUE
 
 /atom/movable/screen/alert/status_effect/buff/call_to_slaughter
@@ -375,7 +373,7 @@
 
 	secondary_resource_cost = SPELLCOST_UTILITY_BUFF
 
-	invocations = list("Blood for the Blood God!")
+	invocations = list("Let my prey's suffering be thy feast!")
 	invocation_type = INVOCATION_SHOUT
 
 	charge_required = TRUE
@@ -394,10 +392,13 @@
 	var/mob/living/spelltarget = cast_on
 
 	if(!isliving(spelltarget))
-		to_chat(owner, span_warning("There is nothing to BLEED."))
+		to_chat(owner, span_warning("They are not bleeding."))
 		return FALSE
 	else
-		spelltarget.visible_message("<font color='bloody'>My lyfeblood flows away!</font>")
+		spelltarget.emote("painscream")
+		playsound(get_turf(spelltarget), 'sound/combat/brutal_impalement.ogg', 100, TRUE)
+		playsound(spelltarget, 'sound/misc/adrenaline_rush.ogg', 100, TRUE)
+		to_chat(span_bloody("My heart races, as my lyfeblood begins to liquefy and bleed faster!"))
 		if(spelltarget.anti_magic_check(TRUE, TRUE))
 			return FALSE
 		if(spell_guard_check(spelltarget, TRUE))
