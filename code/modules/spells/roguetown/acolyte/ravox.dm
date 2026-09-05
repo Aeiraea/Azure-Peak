@@ -101,6 +101,9 @@
 		living_target.adjustFireLoss(20)
 		living_target.apply_status_effect(/datum/status_effect/debuff/judgement)
 		living_target.visible_message(span_warning("The strike from [user]'s weapon smites [living_target]!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		var/turf/target_turf = get_turf(H)
+		new /obj/effect/temp_visual/thunderstrike_actual(target_turf)
+		playsound(target_turf, 'sound/magic/lightning.ogg', 50)
 	else
 		living_target.apply_status_effect(/datum/status_effect/debuff/judgement)
 		living_target.visible_message(span_warning("The strike from [user]'s weapon causes [living_target] to go stiff!"), vision_distance = COMBAT_MESSAGE_RANGE)
@@ -118,6 +121,9 @@
 		H.adjustFireLoss(20)
 		H.apply_status_effect(/datum/status_effect/debuff/judgement)
 		H.visible_message(span_warning("[M]'s fist smites [H]!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		var/turf/target_turf = get_turf(H)
+		new /obj/effect/temp_visual/thunderstrike_actual(target_turf)
+		playsound(target_turf, 'sound/magic/lightning.ogg', 50)
 	else
 		H.apply_status_effect(/datum/status_effect/debuff/judgement)
 		H.visible_message(span_warning("The strike from [M]'s fist causes [H] to go stiff!"), vision_distance = COMBAT_MESSAGE_RANGE)
