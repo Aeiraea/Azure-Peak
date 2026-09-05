@@ -1,11 +1,12 @@
 /datum/advclass
 	var/name
-	// Display only title for feminine character.
+	/// Displays only title for feminine characters.
 	var/f_title
 	var/list/classes
 	var/outfit
 	var/tutorial = "Choose me!"
-	// Feminine-specific tutorial shown in the class-picker. If not set, will default to the tutorial var. It CANNOT have (= "Choose me!") after it or every advclass with f_title will have it.
+	/// Feminine-specific tutorial shown in the class-picker. If not set, defaults to the tutorial var.
+	/// It CANNOT have (= "Choose me!") after it or every advclass with f_title will have it.
 	var/f_tutorial
 	var/townie_contract_gate_exempt = FALSE
 	var/townie_contract_gate_hide_in_list = FALSE
@@ -77,13 +78,32 @@
 
 	var/tempo_capable = TRUE
 
-//Fetches the feminine title for the class-picker if it exists, otherwise returns the default title.
+/// Returns the advclass title based on the character's global title preference.
 /datum/advclass/proc/get_used_title(titles_pref)
 	if(titles_pref == TITLES_F && f_title)
 		return f_title
 	return name
 
-//Fetches the feminine tutorial for the class-picker if it exists, otherwise returns the default tutorial.
+/// Returns the advclass title using the per-advclass preference, otherwise returns the character's global title preference.
+/datum/advclass/proc/get_used_title_with_pref(mob/living/carbon/human/H)
+	if(!H)
+		return name
+	var/titles_pref = H.titles_pref
+	var/title_pref = ADVCLASS_TITLE_AUTO
+	var/datum/job/J
+	if(H.job)
+		J = SSjob.GetJob(H.job)
+	if(J)
+		title_pref = J.get_advclass_title_pref(H, type)
+	switch(title_pref)
+		if(ADVCLASS_TITLE_DEFAULT)
+			return name
+		if(ADVCLASS_TITLE_FEMININE)
+			return f_title || name
+		else
+			return get_used_title(titles_pref)
+
+/// Returns the feminine tutorial for the class-picker if it exists, otherwise returns the default tutorial.
 /datum/advclass/proc/get_used_tutorial(titles_pref)
 	if(titles_pref == TITLES_F && f_tutorial)
 		return f_tutorial

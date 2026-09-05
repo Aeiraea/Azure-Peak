@@ -1157,12 +1157,12 @@
 		used_title = J.display_title || J.title
 		if(J.advjob_examine && !override_advclass_examine)
 			used_title = advjob
-		if(titles_pref == TITLES_F) // This and below checks if the mob is female and if their advclass has f_title, if so it uses that instead of the default title.
+		if(titles_pref == TITLES_F) // This and below checks if the mob is female and if their advclass has f_title, if so it uses that instead of their preferred title.
 			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
 				var/datum/advclass/AC = H.get_advclass_datum()
-				if(AC?.f_title)
-					used_title = AC.f_title
+				if(AC)
+					used_title = AC.get_used_title_with_pref(H)
 				else if(J.f_title)
 					used_title = J.f_title
 			else if(J.f_title)
