@@ -568,3 +568,13 @@
 	timer = 5 MINUTES
 	stressadd = 1
 	desc = list(span_artery("Even I found no satisfaction in striking someone so meek."), span_artery("They denied me the thrill of a real fight."), span_artery("Their refusal to resist leaves a bitter taste."), span_artery("There was no struggle... only acceptance. That's insane."), span_artery("I expected fear, hatred, anything... but not acceptance."), span_artery("A defenseless victim is hardly worth remembering, yet the thought lingers."), span_artery("Why won't the image of their helplessness leave my mind?"))
+
+/datum/stressevent/dreadful_warfare
+	timer = 2.5 MINUTES
+	stressadd = 2
+	desc = span_red("The sheer malice behind that war cry is enough to unsettle even the stoutest heart...")
+
+/datum/stressevent/dull_warfare
+	timer = 2.5 MINUTES
+	stressadd = 0
+	desc = span_blue("My faith is my shield, and my fury my sword! Let no maddened cry shake my heart, for it belongs to HIM alone!")

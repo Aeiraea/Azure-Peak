@@ -563,3 +563,8 @@
 	timer = 15 MINUTES
 	stressadd = -2
 	desc = span_green("I feel a presence scarcely watching over me. Ah, blessed be the Ten Saints and their guidance! They too will me to ENDURE!")
+
+/datum/stressevent/jolly_warfare
+	timer = 2.5 MINUTES
+	stressadd = -4
+	desc = span_red("SINISTAR BLESSES THIS SLAUGHTER! TO WAR, BATTLE-BROTHERS AND SISTERS!!")
