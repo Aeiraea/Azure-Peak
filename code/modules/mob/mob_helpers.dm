@@ -1160,11 +1160,14 @@
 		if(J.advjob_examine && !override_advclass_examine)
 			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
-				var/datum/advclass/AC = H.get_advclass_datum()
-				if(AC)
-					used_title = AC.get_used_title_with_pref(H)
-				else if(advjob)
-					used_title = advjob
+				if(H.adaptive_name && H.advjob)
+					used_title = H.advjob
+				else
+					var/datum/advclass/AC = H.get_advclass_datum()
+					if(AC)
+						used_title = AC.get_used_title_with_pref(H)
+					else if(advjob)
+						used_title = advjob
 			else if(advjob)
 				used_title = advjob
 		else if(titles_pref == TITLES_F && J.f_title)
