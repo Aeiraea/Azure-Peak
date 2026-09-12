@@ -11,20 +11,20 @@
 	layer = ABOVE_HUD_LAYER
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 
-	New(loc, datum/hud/hud)
-		our_hud = hud
-		..()
+/atom/movable/screen/action_button_toggle/New(loc, datum/hud/hud)
+	our_hud = hud
+	..()
 
-	Click(location, control, params)
-		if(!our_hud || !our_hud.mymob)
-			return
+/atom/movable/screen/action_button_toggle/Click(location, control, params)
+	if(!our_hud || !our_hud.mymob)
+		return
 
-		our_hud.mymob.toggle_action_buttons()
-		return TRUE
+	our_hud.mymob.toggle_action_buttons()
+	return TRUE
 
-	Destroy()
-		our_hud = null
-		return ..()
+/atom/movable/screen/action_button_toggle/Destroy()
+	our_hud = null
+	return ..()
 
 /atom/movable/screen/movable/action_button
 	var/datum/action/linked_action
