@@ -68,6 +68,7 @@
 			H.mind.add_antag_datum(new_antag)
 			add_verb(H, /mob/living/carbon/human/proc/gnoll_inspect_skin)
 			add_verb(H, /mob/living/carbon/human/proc/gnoll_toggle_pelt_repair)
+			add_verb(H, /mob/living/carbon/human/proc/gnoll_view_tracked_char)
 
 /datum/outfit/job/roguetown/gnoll/proc/don_pelt(mob/living/carbon/human/H)
 	if(H.mind)
@@ -179,3 +180,25 @@
 		to_chat(src, span_notice("Armor shards will now repair your pelt."))
 	else
 		to_chat(src, span_warning("Armor shards will no longer repair your pelt. Warning, this prevents gaining buffs from picking up shards."))
+
+/mob/living/carbon/human/proc/gnoll_view_tracked_char()
+	set name = "Remember Your Prey"
+	set category = "RoleUnique.Gnoll"
+	set desc = "View your Track target's flavortext panel."
+	var/obj/effect/proc_holder/spell/invoked/gnoll_sniff/sniff_spell = \
+		src.HasSpell(/obj/effect/proc_holder/spell/invoked/gnoll_sniff)
+	if(!sniff_spell)
+		to_chat(src, span_warning("I cannot remember my prey."))
+		return
+	var/mob/living/tracked_target = sniff_spell.tracked_target
+	if(!tracked_target || QDELETED(tracked_target))
+		if(sniff_spell.had_tracked_target)
+			to_chat(src, span_warning("My prey is gone...")) // If the selected target far-traveled.
+		else
+			to_chat(src, span_warning("I can't remember anything. Did I forget to track my prey?")) // If a target had not been selected prior.
+		return
+	to_chat(src, span_warning("I recall my mark with blessed foreknowledge..."))
+	var/datum/examine_panel/mob_examine_panel = new(src)
+	mob_examine_panel.holder = tracked_target
+	mob_examine_panel.viewing = src
+	mob_examine_panel.ui_interact(src)

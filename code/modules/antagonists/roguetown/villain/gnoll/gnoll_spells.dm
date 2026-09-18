@@ -38,6 +38,7 @@
 		"Adventurer" = TRUE
 	)
 	var/mob/living/tracked_target = null
+	var/had_tracked_target = FALSE
 	var/shown_hunt_disclaimer = FALSE
 	breaks_invisibility = FALSE
 
@@ -51,7 +52,8 @@
 
 	if(is_valid_hunted(target) && target != user)
 		tracked_target = target
-		to_chat(user, span_notice("You catch the scent of [target.real_name]. The hunt begins!"))
+		had_tracked_target = TRUE
+		to_chat(user, span_notice("You catch the scent of <a href='?src=[REF(user)];task=gnoll_view_tracked;'>[target.real_name]</a>. The hunt begins!"))
 		user.playsound_local(get_turf(user), 'sound/vo/mobs/wwolf/sniff.ogg', 50, TRUE)
 	else if (!tracked_target)
 		to_chat(user, span_warning("[target] isn't something you can hunt."))
@@ -91,7 +93,8 @@
 		shown_hunt_disclaimer = TRUE
 
 	tracked_target = possible_targets[selection]
-	to_chat(user, span_notice("You focus your senses on [tracked_target.real_name]."))
+	had_tracked_target = TRUE
+	to_chat(user, span_notice("You focus your senses on [tracked_target.real_name]. (<a href='?src=[REF(user)];task=gnoll_view_tracked;'>Preview Prey</a>)"))
 	give_tracking_directions(user)
 
 /obj/effect/proc_holder/spell/invoked/gnoll_sniff/proc/give_tracking_directions(mob/user)
