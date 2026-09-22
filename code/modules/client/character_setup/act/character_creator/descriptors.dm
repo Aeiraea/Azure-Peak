@@ -328,6 +328,36 @@
 				if(msg)
 					msg += "<br><br>"
 				msg += "<b>You recall what the other Blue-bloods hushed about [real_name]...</b><br>[noble_gossip_cached]"
+			if(length(secrets))
+				var/static/list/secret_labels = list(
+					"assassin" = "Assassin (Targeted)",
+					"bandit" = "Bandit",
+					"dreamwalker" = "Dreamwalker (Marked)",
+					"gnoll" = "Gnoll (Hunted)",
+					"hag" = "Hag",
+					"lich" = "Lich",
+					"maniac" = "Maniac",
+					"peasant_rebel" = "Rebel",
+					"vampire" = "Vampire (Awestruck)",
+					"werewolf" = "Werewolf",
+					"wretch" = "Wretch",
+				)
+				var/secrets_msg = ""
+				for(var/secret_type in secrets)
+					var/secret = secrets[secret_type]
+					if(!secret)
+						continue
+					if(secrets_msg)
+						secrets_msg += "<br><br>"
+					var/secret_label = secret_labels[secret_type]
+					if(!secret_label)
+						secret_label = "[secret_type]"
+					var/parsed_secret = parsemarkdown_basic(html_encode(secret), hyperlink = TRUE)
+					secrets_msg += "<b>[secret_label]:</b><br>[parsed_secret]"
+				if(secrets_msg)
+					if(msg)
+						msg += "<br><br>"
+					msg += "<b>You recall the secrets recorded about [real_name]...</b><br>[secrets_msg]"
 			if(msg)
 				to_chat(user, span_info("[msg]"))
 			else

@@ -455,7 +455,7 @@ const TextDescriptions = () => {
         <Stack.Divider mt={1} mb={1} />
         <Stack.Item textAlign="right">
           <Button onClick={() => act('rumour_preview')}>
-            Preview Rumours & Noble Gossip in chat
+            Preview Rumours, Noble Gossip & Secrets in chat
           </Button>
         </Stack.Item>
         <Stack.Item>
