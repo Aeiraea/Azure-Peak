@@ -76,7 +76,7 @@
 
 		if("save_markdown_text")
 			var/type = params["type"]
-
+			var/secret_type
 			var/max_length = 0
 			var/type_name = ""
 			var/log = ""
@@ -106,6 +106,55 @@
 					max_length = 400
 					type_name = "Noble Gossip"
 					log = "[user] has set their noble gossip to %VALUE%."
+				if("save_secret")
+					max_length = 400
+					secret_type = params["secret_type"]
+					if(!(secret_type in list(
+					//	Disabled or undesired antagonists can still be included but parked until support is restored for them.
+					//	"ascendant",
+					//	"aspirant",
+						"assassin",
+						"bandit",
+						"dreamwalker",
+						"gnoll",
+						"hag",
+						"lich",
+						"maniac",
+						"peasant_rebel",
+						"vampire",
+						"werewolf",
+						"wretch",
+					)))
+						return CHARACTER_ACT_DATA_UPDATE
+					switch(secret_type)
+					//	Disabled or undesired antagonists can still be included but parked until support is restored for them.
+					//	if("ascendant")
+					//		type_name = "Ascendant Secret"
+					//	if("aspirant")
+					//		type_name = "Aspirant Secret"
+						if("assassin")
+							type_name = "Assassin Secret"
+						if("bandit")
+							type_name = "Bandit Secret"
+						if("dreamwalker")
+							type_name = "Dreamwalker Secret"
+						if("gnoll")
+							type_name = "Gnoll Secret"
+						if("hag")
+							type_name = "Hag Secret"
+						if("lich")
+							type_name = "Lich Secret"
+						if("maniac")
+							type_name = "Maniac Secret"
+						if("peasant_rebel")
+							type_name = "Rebel Secret"
+						if("vampire")
+							type_name = "Vampire Secret"
+						if("werewolf")
+							type_name = "Werewolf Secret"
+						if("wretch")
+							type_name = "Wretch Secret"
+					log = "[user] has updated their [type_name]."
 				else
 					return CHARACTER_ACT_DATA_UPDATE
 
@@ -141,6 +190,14 @@
 					prev_length = length(noble_gossip)
 					noble_gossip = value
 					noble_gossip_cached = value_parsed
+				if("save_secret")
+					if(!islist(secrets))
+						secrets = list()
+					prev_length = length(secrets[secret_type])
+					if(value)
+						secrets[secret_type] = value
+					else
+						secrets -= secret_type
 
 			verbose_pref_log_change(user, "notice", "[type_name]", "[prev_length] characters", "[length(value)] characters")
 			log_game(replacetext(log, "%VALUE%", html_encode(value)))
