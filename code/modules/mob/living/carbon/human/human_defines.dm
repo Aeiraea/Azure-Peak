@@ -130,6 +130,7 @@
 	var/rumour = null
 	var/noble_gossip = null
 	var/list/secrets = list()
+	var/list/remembered_secret_targets = list()
 	var/song_title
 	var/song_artist
 	var/received_resident_key = FALSE

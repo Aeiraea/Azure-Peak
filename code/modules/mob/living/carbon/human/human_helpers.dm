@@ -113,10 +113,14 @@
 	if(!secrets?[secret_type] || !is_secret_audience(viewer, secret_type))
 		return FALSE
 
+	var/mob/living/carbon/human/H = viewer
+
 	switch(secret_type)
 		if("assassin")
 			return has_flaw(/datum/charflaw/targeted)
 		if("dreamwalker")
+			if(H.remembers_secret_target(src, secret_type))
+				return TRUE
 			var/datum/component/dreamwalker_mark/mark_component = viewer.GetComponent(/datum/component/dreamwalker_mark)
 			return mark_component?.marked_target == src
 		if("gnoll")
@@ -124,6 +128,8 @@
 		if("hag")
 			return HAS_TRAIT(src, TRAIT_FEYTOUCHED)
 		if("vampire")
+			if(H.remembers_secret_target(src, secret_type))
+				return TRUE
 			var/datum/status_effect/awestruck/awe_effect = has_status_effect(/datum/status_effect/awestruck)
 			return awe_effect?.awe_user == viewer
 	return FALSE
@@ -161,7 +167,7 @@
 /mob/living/carbon/human/proc/can_access_secret_on_examine(mob/viewer, secret_type)
 	if(!secrets?[secret_type])
 		return FALSE
-	if(secret_type == "vampire")
+	if(secret_type == "assassin" || secret_type == "dreamwalker" || secret_type == "gnoll" || secret_type == "vampire")
 		return can_access_secret_remotely(viewer, secret_type)
 	return is_secret_audience(viewer, secret_type)
 
@@ -192,6 +198,22 @@
 		if(can_access_secret_on_examine(viewer, secret_type))
 			allowed_secrets[secret_type] = secrets[secret_type]
 	return length(allowed_secrets) ? allowed_secrets : null
+
+/// Remembers a Secret learned through a temporary mechanic.
+/mob/living/carbon/human/proc/remember_secret_target(mob/living/carbon/human/target, secret_type)
+	if(!target?.secrets?[secret_type])
+		return
+
+	var/list/remembered_targets = remembered_secret_targets[secret_type]
+	if(!islist(remembered_targets))
+		remembered_targets = list()
+		remembered_secret_targets[secret_type] = remembered_targets
+
+	remembered_targets |= target
+
+/mob/living/carbon/human/proc/remembers_secret_target(mob/living/carbon/human/target, secret_type)
+	var/list/remembered_targets = remembered_secret_targets?[secret_type]
+	return islist(remembered_targets) && (target in remembered_targets)
 
 //gets name from ID or PDA itself, ID inside PDA doesn't matter
 //Useful when player is being seen by other mobs

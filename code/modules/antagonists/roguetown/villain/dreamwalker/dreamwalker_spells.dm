@@ -23,7 +23,7 @@
 		"Absolver",
 		"Templar",
 		"Sergeant",
-		"Men-at-arms",
+		"Man at Arms",
 		"Knight",
 		"Squire",
 		"Mercenary",
@@ -76,6 +76,11 @@
 	tracking_spell.parent_spell = src
 	user.mind.AddSpell(tracking_spell)
 	mark_component.set_marked_target(marked_target)
+
+	if(ishuman(user) && ishuman(marked_target))
+		var/mob/living/carbon/human/dreamwalker = user
+		var/mob/living/carbon/human/marked_human = marked_target
+		dreamwalker.remember_secret_target(marked_human, "dreamwalker")
 
 	if(marked_target != user)
 		to_chat(user, span_warning("[user] traces a glowing symbol in the air marking [marked_target]."),
