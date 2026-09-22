@@ -29,7 +29,7 @@
 		"Absolver" = TRUE,
 		"Templar" = TRUE,
 		"Sergeant" = TRUE,
-		"Men-at-arms" = TRUE,
+		"Man at Arms" = TRUE,
 		"Knight" = TRUE,
 		"Squire" = TRUE,
 		"Mercenary" = TRUE,
