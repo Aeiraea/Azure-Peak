@@ -56,11 +56,6 @@
 	var/list/subprefs = get_roleprefs(C)
 	if(!subprefs)
 		return
-	if(!prefs.job_subprefs || !islist(prefs.job_subprefs))
-		prefs.job_subprefs = list()
-	if(!prefs.job_subprefs[title])
-		prefs.job_subprefs[title] = list("codename" = null, "hand_file_notes" = null, "favorite_advclass" = null, "advclass_title_prefs" = null)
-	var/list/subprefs = prefs.job_subprefs[title]
 	var/datum/advclass/favorite = subprefs["favorite_advclass"]
 	var/favorite_name = favorite ? favorite::name : "Choose"
 	var/list/title_prefs = subprefs["advclass_title_prefs"]
